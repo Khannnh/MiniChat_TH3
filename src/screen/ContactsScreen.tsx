@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
-import { FlatList, Text, SafeAreaView, StyleSheet } from 'react-native';
+import { FlatList, Text, StyleSheet } from 'react-native';
+import { SafeAreaView } from 'react-native-safe-area-context';
 import { MOCK_CONTACTS } from '../data';
 import { SearchBar } from '../components/SearchBar';
 import { ContactItem } from '../components/ContactItem';
@@ -9,7 +10,7 @@ export const ContactsScreen = ({ navigation }: any) => {
   const data = MOCK_CONTACTS.filter(item => item.name.toLowerCase().includes(search.toLowerCase()));
 
   return (
-    <SafeAreaView style={styles.container}>
+    <SafeAreaView edges={['top']} style={styles.container}>
       <Text style={styles.headerTitle}>Danh bạ</Text>
       <SearchBar value={search} onChangeText={setSearch} />
       <FlatList

@@ -1,24 +1,29 @@
 import React, { useState } from 'react';
-import { View, Text, TextInput, TouchableOpacity, FlatList, SafeAreaView, StyleSheet } from 'react-native';
+import { View, Text, TextInput, TouchableOpacity, FlatList, StyleSheet } from 'react-native';
+import { SafeAreaView } from 'react-native-safe-area-context';
 import Icon from '@react-native-vector-icons/ionicons'; 
+import { useChat } from '../context/ChatContext';
 export const ChatDetailScreen = ({ route, navigation }: any) => {
   const { name } = route.params || { name: 'Chat' };
-  const [messages, setMessages] = useState([
-    { id: '1', text: 'Chào bạn!', sender: 'other' },
-    { id: '2', text: 'Chào cậu, mình nhận được tin rồi.', sender: 'me' },
-  ]);
+  const { messagesByChat, sendMessage } = useChat();
+  const messages = messagesByChat[name] ?? [];
   const [text, setText] = useState('');
 
   const send = () => {
     if (!text.trim()) return;
-    setMessages([...messages, { id: Date.now().toString(), text, sender: 'me' }]);
+    sendMessage(name, text);
     setText('');
   };
 
   return (
-    <SafeAreaView style={styles.container}>
+    <SafeAreaView edges={['top']} style={styles.container}>
       <View style={styles.header}>
-        <TouchableOpacity onPress={() => navigation.goBack()} style={{ marginRight: 12 }}>
+        <TouchableOpacity
+          onPress={() => navigation.goBack()}
+          style={{ marginRight: 12 }}
+          accessibilityRole="button"
+          accessibilityLabel="Quay lại"
+        >
           <Icon name="arrow-back" size={24} color="#0F172A" />
         </TouchableOpacity>
         <Text style={styles.headerName}>{name}</Text>

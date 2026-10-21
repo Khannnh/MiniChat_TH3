@@ -1,5 +1,6 @@
 import React, { useEffect } from 'react';
-import { View, Text, StyleSheet } from 'react-native';
+import { Text, StyleSheet } from 'react-native';
+import { SafeAreaView } from 'react-native-safe-area-context';
 import BootSplash from 'react-native-bootsplash';
 
 export const SplashScreen = ({ navigation }: any) => {
@@ -18,10 +19,10 @@ export const SplashScreen = ({ navigation }: any) => {
   }, [navigation]);
 
   return (
-    <View style={styles.container}>
+    <SafeAreaView edges={['top']} style={styles.container}>
       <Text style={styles.logoText}>AppChat</Text>
       <Text style={styles.subText}>Đang tải ứng dụng...</Text>
-    </View>
+    </SafeAreaView>
   );
 };
 

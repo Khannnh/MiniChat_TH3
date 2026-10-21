@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
-import { FlatList, Text, SafeAreaView, TouchableOpacity, StyleSheet } from 'react-native';
+import { FlatList, Text, TouchableOpacity, StyleSheet } from 'react-native';
+import { SafeAreaView } from 'react-native-safe-area-context';
 import { MOCK_NOTIFICATIONS } from '../data';
 
 export const NotificationScreen = () => {
@@ -10,7 +11,7 @@ export const NotificationScreen = () => {
   };
 
   return (
-    <SafeAreaView style={styles.container}>
+    <SafeAreaView edges={['top']} style={styles.container}>
       <Text style={styles.headerTitle}>Thông báo</Text>
       <FlatList
         data={list}

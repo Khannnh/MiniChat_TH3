@@ -1,6 +1,6 @@
 import React from 'react';
 import { View, TextInput, StyleSheet } from 'react-native';
-import Icon from 'react-native-vector-icons/Feather';
+import Icon from '@react-native-vector-icons/ionicons';
 
 interface Props {
   value: string;
@@ -10,7 +10,7 @@ interface Props {
 
 export const SearchBar = ({ value, onChangeText, placeholder = 'Tìm kiếm...' }: Props) => (
   <View style={styles.container}>
-    <Icon name="search" size={18} color="#64748B" style={{ marginRight: 8 }} />
+    <Icon name="search-outline" size={18} color="#64748B" style={{ marginRight: 8 }} />
     <TextInput
       style={styles.input}
       value={value}
